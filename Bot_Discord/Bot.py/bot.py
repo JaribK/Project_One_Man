@@ -399,15 +399,25 @@ async def trans(ctx, _in : str, _out : str, *, messages : str):
 @bot.event
 async def on_message(message):
 
-    if message.channel.id == 1093201827031433329:
+    # chatgpt-bot.
+    # I don't have enough token. ;(
 
-        # chatgpt-bot.
-        # I don't have enough token. ;(
-        user_message = message.content[len(''):]
+    if message.author == bot.user:
+        return
+
+    if message.channel.id == 1093201827031433329:
+        prompt = message.content  # Assuming you want to use the message content as the prompt
+
+        # Generate a response from OpenAI
         response = openai.Completion.create(
-            engine="davinci-codex",  # You can choose a different engine if desired
-            prompt=user_message,
-            max_tokens=50  # Adjust max tokens based on desired response length
+            engine="davinci",
+            prompt=prompt,
+            max_tokens=50,
+            temperature=0.6,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0,
+            stop=["\n"]
         )
 
         await message.channel.send(response.choices[0].text.strip())
