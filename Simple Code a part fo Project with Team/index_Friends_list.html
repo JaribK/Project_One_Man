@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/search.css' rel='stylesheet'>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <header class="nav">
+        <div class="imgbrand_box">
+            <img src="https://i.ibb.co/yF3MDjX/4161b325ebff16c75d3127844bbfe56e-removebg-preview.png" alt="4161b325ebff16c75d3127844bbfe56e-removebg-preview" border="0">
+            <h1>Triple F</h1>
+        </div>
+        <form style="display: flex; align-items: center; position: relative;">
+            <input id="searchBox" type="text" placeholder="Search for Players or Game Types..." autocomplete="off" style="padding-left: 2em;">
+            <div style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);">
+                <i class="gg-search" style="margin: 0;color: #8F9092;"></i>
+            </div>
+        </form>
+        <div class="box">
+            <img class="picprofile_content" src="https://www.matichon.co.th/wp-content/uploads/2022/05/92466-696x461-1.jpg">
+            <ion-icon class="notify_content" name="notifications"></ion-icon>
+            <img class="coinshop_content" src="https://i.ibb.co/mTqhGmV/8633377800bec812a4800dcd90b74a12.png" alt="8633377800bec812a4800dcd90b74a12" border="0">
+        </div>
+    </header>
+        <div class="body">
+            <div class="sidebar">
+                <div class="title-sidebar">
+                    <h3>Discover</h3>
+                </div>
+                <div class="menu-sidebar">
+                <div class="display1">
+                    <a href="">Party</a><br>
+                    <a href="">Stream</a><br>
+                    <a href="">Friends</a><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content1">
+        <div id="app">
+            <v-app>
+                <v-main>
+                    <v-container grid-list-xs>
+                        <div style="font-size: 50px;font-weight: bolder;">Friends</div>
+                        <!-- <form class="flex flex-row" @submit.prevent="(form.user_id)?update(form.user_id):create()">
+                            <v-text-field v-model="form.name_profile" label="Name Profile" id="user_id"></v-text-field>
+                            <v-text-field v-model="form.username" label="Username" id="user_id"></v-text-field>
+                            <v-text-field v-model="form.password" label="Password" id="user_id"></v-text-field>
+                            <v-text-field v-model="form.email" label="Email" id="user_id"></v-text-field>
+                            <v-text-field v-model="form.profile_picture" label="Link Pic" id="user_id"></v-text-field>
+                            <v-text-field v-model="form.amount_hours" label="amount hours" id="user_id"></v-text-field>
+                            <v-btn type="submit" color="success">{{(form.user_id)?'Update':'Create'}}</v-btn>
+                        </form> -->
+                        <br>
+                        <div style="display: flex;width: 100%;">
+                            <div style="display: flex;align-items: center;margin-right: 10px;">
+                                <i class="gg-search"></i>
+                            </div>
+                            <v-text-field style="width: 90%;" hint="Write your friend name" v-model="search" label="Search Friends" id="user_id"></v-text-field>
+                        </div>
+                        <br>
+                        <v-data-table :headers="headers" :items="list" :search="search">
+                            <template v-slot:item.image ="{ item }">
+                                <div style="display: flex;margin: auto; align-items: center;height: 100px;width: 80px;margin-right: 0px;">
+                                    <v-img :src="item.profile_picture" style="border-radius: 7px;height: 70px; width: 0.000000000000000001px;"></v-img>
+                                </div>
+                            </template>
+                            <template v-slot:item.action="{ item }">
+                                <div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
+                                        <ul class="dropdown-menu bg-danger">
+                                          <li><a class="dropdown-item bg-danger text-white" @click="remove(item.user_id)">Delete</a></li>
+                                        </ul>
+                                      </div>
+                                      <!-- <v-btn @click="remove(item.user_id)" color="error">delete</v-btn> -->
+                                </div>
+                            </template>
+                        </v-data-table>
+                    </v-container>
+                </v-main>
+            </v-app>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script>
+            const host = "http://localhost:8000"
+            const vue_home = new Vue({
+                el: '#app',
+                vuetify: new Vuetify({
+                    theme:{dark : true}
+                }),
+                data: () => {
+                    return ({
+                        name: 'Vue',
+                        list: [],
+                        form: {},
+                        search: '',
+                        headers: [
+                            {
+                                text: 'Friend List',
+                                value: 'image',
+                            },
+                            {
+                                text: '                          ',
+                                value: 'name_profile',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            {
+                                text: '',
+                                value: 'action',
+                            },
+                        ]
+                    })
+                },
+                async created() {
+                    await this.load()
+                },
+                methods: {
+                    async load() {
+                        this.form = {}
+                        await axios.get(`${host}/users`).then((res) => {
+                            this.list = res.data
+                        })
+                    },
+                    async remove(user_id) {
+                        let confirm = window.confirm("U want to delete");
+                        if (confirm) {
+                            await axios.delete(`${host}/users/${user_id}`).then(async (res) => {
+                                await this.load()
+                                let result = res.data
+                                alert(result.message)
+                            });
+                        }
+                        // await axios.delete(`${host}/users/${user_id}`).then(async (res) => {
+                        //     await this.load()
+                        // })
+                    },
+    
+                    async update(user_id) {
+                        let check = window.confirm('U want to edit?')
+                        if (check) {
+                            await axios.put(`${host}/users/${user_id}`, this.form).then(async (res) => {
+                                alert(res.data.message)
+                            })
+                        }
+                        await this.load()
+                    },
+    
+                    async create() {
+                        await axios.post(`${host}/users`, this.form).then(async (res) => {
+                            await this.load()
+                        })
+                    },
+                },
+            })
+        </script>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
